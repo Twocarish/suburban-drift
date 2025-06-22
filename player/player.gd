@@ -1,10 +1,14 @@
 extends CharacterBody3D
 
 @onready var player_camera = $Camera3D
+@onready var gun_particles = []
 
 # this method is called on startup and locks the player's mouse to the screen.
 func _ready():
 	Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
+	for e in $Camera3D/blend_weapon_rifle.get_children():
+		if e is GPUParticles3D:
+			gun_particles.append(e)
 
 # called every physics tick
 func _physics_process(delta):
@@ -34,3 +38,9 @@ func _input(event):
 	# jumping. 'nuff said
 	elif event.is_action_pressed("jump") and is_on_floor():
 		velocity.y += 2
+	elif event.is_action_pressed("shoot"):
+		for e in gun_particles:
+			e.emitting = true
+	elif event.is_action_released("shoot"):
+		for e in gun_particles:
+			e.emitting = false

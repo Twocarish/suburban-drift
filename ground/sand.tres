@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b2yubma3tqnho"]
+
+[ext_resource type="Texture2D" uid="uid://dvrb8fjryrq43" path="res://ground/T_Surface_Sand.png" id="1_vxghi"]
+
+[resource]
+albedo_texture = ExtResource("1_vxghi")
+normal_scale = 11.02
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true

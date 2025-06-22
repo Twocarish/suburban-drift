@@ -1,8 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://0m8amf7udhxs"]
+[gd_scene load_steps=30 format=3 uid="uid://0m8amf7udhxs"]
 
-[ext_resource type="Material" path="res://Grid.tres" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://gn1ts8nllqc5" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://2ihsdjcq4cd3" path="res://player/player.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dp54puk6fuvm3" path="res://player/blend_weapon_rifle.glb" id="3_4c57u"]
+[ext_resource type="Material" uid="uid://b2yubma3tqnho" path="res://ground/sand.tres" id="3_5vw27"]
+[ext_resource type="PackedScene" uid="uid://bqgn8cna65oav" path="res://rocks/rock1.glb" id="4_7mycd"]
+[ext_resource type="Material" uid="uid://dwfjsm5umw0gw" path="res://player/bubble.tres" id="4_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cs68heca6wpp7" path="res://rocks/rock2.glb" id="5_272bh"]
+[ext_resource type="Material" uid="uid://dfxawj34ry0j0" path="res://player/puff.tres" id="5_dg77c"]
+[ext_resource type="PackedScene" uid="uid://bc4hot677bmcw" path="res://rocks/rock.glb" id="6_5vw27"]
+[ext_resource type="PackedScene" uid="uid://ckeq4e4yl88ov" path="res://plants/sea_plant.glb" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cc1j4m3a7tclx" path="res://animated_prop.gd" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dh61ernr88bnc" path="res://signs/stop_sign.glb" id="10_efxa6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_top_color = Color(0.0097954, 0.243325, 0.412691, 1)
@@ -20,7 +29,7 @@ sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
 background_mode = 2
 sky = SubResource("Sky_h2yge")
 ambient_light_source = 2
-ambient_light_color = Color(0.355462, 0.535116, 0.675669, 1)
+ambient_light_color = Color(0.229378, 0.37199, 0.482442, 1)
 reflected_light_source = 1
 tonemap_mode = 1
 glow_enabled = true
@@ -36,6 +45,83 @@ volumetric_fog_temporal_reprojection_amount = 0.825
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
 radius = 0.25
 height = 1.5
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dg77c"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 2, 0)
+scale_max = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ycdy4"]
+material = ExtResource("4_efxa6")
+size = Vector2(0.05, 0.05)
+orientation = 0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w48qg"]
+direction = Vector3(-1, 1, 0)
+spread = 25.0
+initial_velocity_min = 3.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 1.5
+
+[sub_resource type="Gradient" id="Gradient_dg77c"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ycdy4"]
+gradient = SubResource("Gradient_dg77c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ycdy4"]
+particle_flag_rotate_y = true
+angle_min = -554.5
+angle_max = 537.3
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 3.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0.1, 0)
+scale_min = 1.5
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_ycdy4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_efxa6"]
+material = ExtResource("5_dg77c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2cqfq"]
+particle_flag_rotate_y = true
+angle_min = -554.5
+angle_max = 537.3
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 2, 0)
+scale_min = 1.5
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_ycdy4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dg77c"]
+material = ExtResource("5_dg77c")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vivmo"]
+particle_flag_rotate_y = true
+angle_min = -554.5
+angle_max = 537.3
+direction = Vector3(0, 0, -1)
+spread = 10.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.25
+gravity = Vector3(0, 0.1, 0)
+scale_min = 1.5
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_ycdy4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2cqfq"]
+material = ExtResource("5_dg77c")
+size = Vector2(0.15, 0.15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 size = Vector3(100, 1, 100)
@@ -59,15 +145,82 @@ shape = SubResource("CapsuleShape3D_7dm0k")
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Camera3D"]
+light_color = Color(1, 0.806667, 0.42, 1)
+
+[node name="blend_weapon_rifle" parent="Player/Camera3D" instance=ExtResource("3_4c57u")]
+transform = Transform3D(0, 0, -0.2, 0, 0.2, 0, 0.2, 0, 0, 0.286, -0.188, -0.316)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3001, 0, 0)
+emitting = false
+amount = 12
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_dg77c")
+draw_pass_1 = SubResource("QuadMesh_ycdy4")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83155, 0, 0)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_w48qg")
+draw_pass_1 = SubResource("QuadMesh_ycdy4")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16071, 0, 0)
+emitting = false
+amount = 32
+lifetime = 2.0
+use_fixed_seed = true
+seed = 1484820908
+process_material = SubResource("ParticleProcessMaterial_ycdy4")
+draw_pass_1 = SubResource("QuadMesh_efxa6")
+
+[node name="GPUParticles3D5" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16071, 0, 0)
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_2cqfq")
+draw_pass_1 = SubResource("QuadMesh_dg77c")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.705691, 0, -0.438269)
+emitting = false
+amount = 16
+lifetime = 2.0
+use_fixed_seed = true
+seed = 3848298787
+process_material = SubResource("ParticleProcessMaterial_vivmo")
+draw_pass_1 = SubResource("QuadMesh_2cqfq")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-material_override = ExtResource("1_0xm2m")
+material_override = ExtResource("3_5vw27")
 mesh = SubResource("BoxMesh_7dm0k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
 shape = SubResource("ConcavePolygonShape3D_ig7tw")
+
+[node name="props" type="Node" parent="."]
+
+[node name="rock" parent="props" instance=ExtResource("6_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="rock1" parent="props" instance=ExtResource("4_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.890325, 0, -2.17045)
+
+[node name="rock2" parent="props" instance=ExtResource("5_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13877, -0.00465882, -3.2685)
+
+[node name="sea_plant" parent="props" instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462055, 2.98023e-08, -2.72018)
+script = ExtResource("8_5vw27")
+
+[node name="stop_sign" parent="props" instance=ExtResource("10_efxa6")]
+transform = Transform3D(0.984822, 0.126228, 0.119132, -0.127134, 0.991886, 0, -0.118165, -0.0151457, 0.992878, -1.78813, -1.19209e-07, -3.37049)
+
+[editable path="props/sea_plant"]

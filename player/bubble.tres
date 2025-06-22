@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dwfjsm5umw0gw"]
+
+[ext_resource type="Texture2D" uid="uid://bymbp1l4mwqtk" path="res://player/small_bubble.png" id="1_wcngp"]
+
+[resource]
+blend_mode = 1
+albedo_texture = ExtResource("1_wcngp")

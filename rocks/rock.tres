@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b1p4bjfukh70c"]
+
+[ext_resource type="Texture2D" uid="uid://b2vxny3m5mwfk" path="res://rocks/rock.jpg" id="1_odqha"]
+
+[resource]
+albedo_texture = ExtResource("1_odqha")
+anisotropy = -1.0
+ao_light_affect = 0.37
