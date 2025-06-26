@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://0m8amf7udhxs"]
+[gd_scene load_steps=34 format=3 uid="uid://0m8amf7udhxs"]
 
 [ext_resource type="Script" uid="uid://gn1ts8nllqc5" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://2ihsdjcq4cd3" path="res://player/player.gd" id="1_ig7tw"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bc4hot677bmcw" path="res://rocks/rock.glb" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://ckeq4e4yl88ov" path="res://plants/sea_plant.glb" id="7_272bh"]
 [ext_resource type="Script" uid="uid://cc1j4m3a7tclx" path="res://animated_prop.gd" id="8_5vw27"]
+[ext_resource type="Material" path="res://Grid.tres" id="8_w48qg"]
 [ext_resource type="PackedScene" uid="uid://dh61ernr88bnc" path="res://signs/stop_sign.glb" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cw8n04vgthva6" path="res://layout.glb" id="13_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_top_color = Color(0.0097954, 0.243325, 0.412691, 1)
@@ -89,23 +91,6 @@ color_ramp = SubResource("GradientTexture1D_ycdy4")
 [sub_resource type="QuadMesh" id="QuadMesh_efxa6"]
 material = ExtResource("5_dg77c")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2cqfq"]
-particle_flag_rotate_y = true
-angle_min = -554.5
-angle_max = 537.3
-direction = Vector3(-1, 0, 0)
-spread = 0.0
-initial_velocity_min = 100.0
-initial_velocity_max = 250.0
-gravity = Vector3(0, 2, 0)
-scale_min = 1.5
-scale_max = 4.0
-color_ramp = SubResource("GradientTexture1D_ycdy4")
-
-[sub_resource type="QuadMesh" id="QuadMesh_dg77c"]
-material = ExtResource("5_dg77c")
-size = Vector2(0.2, 0.2)
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vivmo"]
 particle_flag_rotate_y = true
 angle_min = -554.5
@@ -123,6 +108,42 @@ color_ramp = SubResource("GradientTexture1D_ycdy4")
 material = ExtResource("5_dg77c")
 size = Vector2(0.15, 0.15)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2cqfq"]
+particle_flag_rotate_y = true
+angle_min = -554.5
+angle_max = 537.3
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 2, 0)
+scale_min = 1.5
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_ycdy4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dg77c"]
+material = ExtResource("5_dg77c")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yaehf"]
+particle_flag_rotate_y = true
+angle_min = -554.5
+angle_max = 537.3
+direction = Vector3(-1, 0, 0)
+spread = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 4, 0)
+damping_min = 2.0
+damping_max = 4.0
+scale_min = 1.5
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_ycdy4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_074og"]
+material = ExtResource("4_efxa6")
+size = Vector2(0.05, 0.05)
+
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 size = Vector3(100, 1, 100)
 
@@ -136,6 +157,7 @@ script = ExtResource("1_h2yge")
 environment = SubResource("Environment_1bvp3")
 
 [node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 script = ExtResource("1_ig7tw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -151,7 +173,7 @@ light_color = Color(1, 0.806667, 0.42, 1)
 [node name="blend_weapon_rifle" parent="Player/Camera3D" instance=ExtResource("3_4c57u")]
 transform = Transform3D(0, 0, -0.2, 0, 0.2, 0, 0.2, 0, 0, 0.286, -0.188, -0.316)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+[node name="breech_bubbles" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3001, 0, 0)
 emitting = false
 amount = 12
@@ -159,14 +181,14 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_dg77c")
 draw_pass_1 = SubResource("QuadMesh_ycdy4")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+[node name="barrel_bubbles" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83155, 0, 0)
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_w48qg")
 draw_pass_1 = SubResource("QuadMesh_ycdy4")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+[node name="big_smoke" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16071, 0, 0)
 emitting = false
 amount = 32
@@ -176,14 +198,7 @@ seed = 1484820908
 process_material = SubResource("ParticleProcessMaterial_ycdy4")
 draw_pass_1 = SubResource("QuadMesh_efxa6")
 
-[node name="GPUParticles3D5" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16071, 0, 0)
-emitting = false
-amount = 128
-process_material = SubResource("ParticleProcessMaterial_2cqfq")
-draw_pass_1 = SubResource("QuadMesh_dg77c")
-
-[node name="GPUParticles3D4" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+[node name="breech_smoke" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.705691, 0, -0.438269)
 emitting = false
 amount = 16
@@ -193,34 +208,62 @@ seed = 3848298787
 process_material = SubResource("ParticleProcessMaterial_vivmo")
 draw_pass_1 = SubResource("QuadMesh_2cqfq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+[node name="bullet_trail" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16071, 0, 0)
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_2cqfq")
+draw_pass_1 = SubResource("QuadMesh_dg77c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="bubble_trail" type="GPUParticles3D" parent="Player/Camera3D/blend_weapon_rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16071, 0, 0)
+emitting = false
+amount = 128
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_yaehf")
+draw_pass_1 = SubResource("QuadMesh_074og")
+
+[node name="props" type="Node" parent="."]
+
+[node name="sand" type="StaticBody3D" parent="props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 50)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="props/sand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 material_override = ExtResource("3_5vw27")
 mesh = SubResource("BoxMesh_7dm0k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="props/sand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_ig7tw")
 
-[node name="props" type="Node" parent="."]
+[node name="layout" parent="props" instance=ExtResource("13_ycdy4")]
+
+[node name="street" parent="props/layout" index="0"]
+material_override = ExtResource("8_w48qg")
 
 [node name="rock" parent="props" instance=ExtResource("6_5vw27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
 
 [node name="rock1" parent="props" instance=ExtResource("4_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.890325, 0, -2.17045)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89033, 0, 1.82955)
 
 [node name="rock2" parent="props" instance=ExtResource("5_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13877, -0.00465882, -3.2685)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13877, -0.00465882, 0.7315)
 
 [node name="sea_plant" parent="props" instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462055, 2.98023e-08, -2.72018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.46206, 2.98023e-08, 1.27982)
 script = ExtResource("8_5vw27")
 
 [node name="stop_sign" parent="props" instance=ExtResource("10_efxa6")]
-transform = Transform3D(0.984822, 0.126228, 0.119132, -0.127134, 0.991886, 0, -0.118165, -0.0151457, 0.992878, -1.78813, -1.19209e-07, -3.37049)
+transform = Transform3D(0.992791, -0.0220477, 0.117819, 0.0201057, 0.999643, 0.0176417, -0.118165, -0.0151457, 0.992878, 3.21187, -1.19209e-07, 0.62951)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.27694, 6.34891, -26)
+light_color = Color(0.84, 1, 0.978667, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 15.0
+
+[editable path="props/layout"]
 [editable path="props/sea_plant"]
